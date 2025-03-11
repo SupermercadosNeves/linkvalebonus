@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionamento para Loja de Apps</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            margin-top: -40px;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .img {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function detectarSistemaOperacional() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Verifica se é Android
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+
+            // Verifica se é iOS
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+
+            // Se não for nenhum dos dois, retorna "Outro"
+            return "Outro";
+        }
+
+        function redirecionarParaLoja() {
+            var so = detectarSistemaOperacional();
+
+            if (so === "Android") {
+                window.location.href = "https://play.google.com/store/apps/details?id=com.br.crmbonus.app";
+            } else if (so === "iOS") {
+                window.location.href = "https://apps.apple.com/br/app/vale-bonus/id1563025481";
+            } else {
+                alert("Você está usando um sistema operacional não suportado.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <img src="./app.jpeg" width="200vh">
+    <h2>Vale Bonus</h2>
+    <button class="btn" onclick="redirecionarParaLoja()">Baixar App</button>
+</body>
+</html>
